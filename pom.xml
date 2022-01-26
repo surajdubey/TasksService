@@ -20,7 +20,7 @@
                 <configuration>
                     <httpConnector>
                         <!--host>localhost</host-->
-                        <port>3000</port>
+                        <port>4000</port>
                     </httpConnector>
                 </configuration>
             </plugin>

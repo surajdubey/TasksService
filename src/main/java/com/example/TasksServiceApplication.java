@@ -1,31 +1,54 @@
 package com.example;
 
 import com.example.resources.TaskApiResource;
-import io.swagger.jaxrs.config.BeanConfig;
+import com.example.resources.UniversityResource;
+import com.example.resources.UserResource;
+import org.glassfish.jersey.server.ResourceConfig;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 
 import javax.annotation.PostConstruct;
-import javax.ws.rs.core.Application;
 import java.util.HashSet;
 import java.util.Set;
 
-public class TasksServiceApplication extends Application {
+public class TasksServiceApplication extends ResourceConfig {
 
-    public TasksServiceApplication() {
+    @Autowired
+    ApplicationContext context;
 
-        System.out.println("calling constructor");
-        BeanConfig beanConfig = new BeanConfig();
-        beanConfig.setVersion("1.0.2");
-        beanConfig.setSchemes(new String[]{"http"});
-        beanConfig.setHost("localhost:3000");
-        beanConfig.setBasePath("/api");
-        beanConfig.setResourcePackage("com.example");
-        beanConfig.setScan(true);
-    }
+    @PostConstruct
+    public void init() {
+        System.out.println("Called on ExampleApplication PostConstruct");
 
-    @Override
-    public Set<Class<?>> getClasses() {
+        Set<Object> beanBag = new HashSet<>();
+
+        // remove all @Path annotations once from here, otherwise they conflict
+
+        /**
+         * context.getBeansWithAnnotation(Path.class) return Map<String, Object>
+         * context.getBeansWithAnnotation(Path.class).values() returns List<Object>
+         * This is why it is added here
+         *
+         * If we want to add resources directly, it needs to be added to HashSet
+         */
+//        beanBag.addAll(context.getBeansWithAnnotation(Path.class).values());
+
+        System.out.println(beanBag);
+        beanBag.forEach(this::register);
+
         Set<Class<?>> resources = new HashSet<>();
+        resources.add(io.swagger.jaxrs.listing.ApiListingResource.class);
+        resources.add(io.swagger.jaxrs.listing.SwaggerSerializers.class);
+
+        /**
+         * Add Resource here if we want to add resource directly
+         */
         resources.add(TaskApiResource.class);
-        return resources;
+
+        System.out.println(resources);
+
+        resources.forEach(this::register);
+        System.out.println(context);
     }
+
 }
