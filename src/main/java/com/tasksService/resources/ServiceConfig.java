@@ -1,4 +1,4 @@
-package com.example.resources;
+package com.tasksService.resources;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.jaxrs.config.BeanConfig;
@@ -12,8 +12,6 @@ import javax.annotation.PostConstruct;
 @Configuration
 @ComponentScan({
         "com.example.api",
-        "com.example.config",
-        "com.example.model",
         "com.example.resources"
 })
 @EnableAspectJAutoProxy(proxyTargetClass = true)
@@ -34,7 +32,7 @@ public class ServiceConfig {
         beanConfig.setSchemes(new String[]{"http"});
         beanConfig.setHost("localhost:4000");
         beanConfig.setBasePath("/api");
-        beanConfig.setResourcePackage("com.example");
+        beanConfig.setResourcePackage("com.tasksService");
         beanConfig.setScan(true);
     }
 

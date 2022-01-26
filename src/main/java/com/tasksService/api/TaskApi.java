@@ -1,6 +1,6 @@
-package com.example.api;
+package com.tasksService.api;
 
-import com.example.mode.TaskDetailResponse;
+import com.tasksService.mode.TaskDetailResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 

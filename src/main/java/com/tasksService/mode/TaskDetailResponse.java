@@ -1,4 +1,4 @@
-package com.example.mode;
+package com.tasksService.mode;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

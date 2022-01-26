@@ -1,8 +1,6 @@
-package com.example;
+package com.tasksService;
 
-import com.example.resources.TaskApiResource;
-import com.example.resources.UniversityResource;
-import com.example.resources.UserResource;
+import com.tasksService.resources.TaskApiResource;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
