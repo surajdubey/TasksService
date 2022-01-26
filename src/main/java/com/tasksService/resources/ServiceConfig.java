@@ -2,17 +2,18 @@ package com.tasksService.resources;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.jaxrs.config.BeanConfig;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.context.annotation.*;
 
 import javax.annotation.PostConstruct;
 
 @Configuration
 @ComponentScan({
-        "com.example.api",
-        "com.example.resources"
+        "com.tasksService.api",
+        "com.tasksService.resources",
+        "com.tasksService.business"
+})
+@Import({
+        com.example.config.ServiceConfig.class
 })
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 public class ServiceConfig {

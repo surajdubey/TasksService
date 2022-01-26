@@ -1,21 +1,22 @@
 package com.tasksService.resources;
 
+import com.example.api.UserApi;
+import com.example.model.GetUserDetailsResponse;
 import com.tasksService.api.TaskApi;
+import com.tasksService.business.TasksBusiness;
 import com.tasksService.mode.TaskDetailResponse;
 import org.springframework.stereotype.Controller;
+
+import javax.inject.Inject;
 
 @Controller
 public class TaskApiResource implements TaskApi {
 
-/*
     @Inject
-    UserApi userApi;
-*/
+    TasksBusiness tasksBusiness;
 
     @Override
     public TaskDetailResponse getTasks() {
-//        GetUserDetailsResponse response = userApi.getUser();
-//        System.out.println(response);
-        return new TaskDetailResponse("123", "wake up");
+        return tasksBusiness.getTasks();
     }
 }
